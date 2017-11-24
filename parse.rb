@@ -32,13 +32,9 @@ while(group.count > 0) do
 end
 
 p 'Total: ', posts.count
-# binding.pry
 
-posts.reverse.each do |post|
-  # if post['message']['почитать'].present?
-  #   binding.pry
-  # end
-  file.write "#{post['updated_time']}\n"
+posts.sort_by {|p| p['created_time']}.each do |post|
+  file.write "#{post['created_time']}\n"
   file.write "#{post['message']}\n" if post['message']
   file.write "<<#{post['story']}>>\n" if post['story']
   file.write "#{post['link']}\n" if post['link']
